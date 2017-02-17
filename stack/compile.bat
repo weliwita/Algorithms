@@ -1,0 +1,1 @@
+cl /EHsc /ZI program.cpp stack.cpp

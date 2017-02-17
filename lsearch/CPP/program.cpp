@@ -29,11 +29,13 @@ void* lsearchGeneric(void* key, void* base, int n, int elemSize){
     return NULL;
 }
 //generic version with functionpointer version
-void* lsearchFunctionPointer(void* key, void* base, int n, int elemSize,int (*cmpfn)(void*, void*)){
+//void* lsearchFunctionPointer(void* key, void* base, int n, int elemSize,int (*cmpfn)(void*, void*)){
+int lsearchFunctionPointer(void* key, void* base, int n, int elemSize,int (*cmpfn)(void*, void*)){
      for(int i=0; i<n; i++){
         void* elemAddr = (char*)base + i*elemSize;
         if(cmpfn(key,elemAddr) == 0){
-            return elemAddr;
+            //return elemAddr;
+            return i;
         }
     }
    return NULL;
@@ -51,10 +53,11 @@ int main()
     int size = 5;
     int array[] = {1000, 2, 3, 7, 5};
 
-    int number = 7;
+    int number =76;
 
     //int *found = (int*)lsearchGeneric(&number, array, 5, sizeof(int));// size of int is 4
-    int *found = (int*)lsearchFunctionPointer(&number, array, 5, sizeof(int),intCmp);
-    cout << *found << endl;
+    //cout << *found << endl;
+    int location = (int)lsearchFunctionPointer(&number, array, 5, sizeof(int),intCmp);
+    cout << location << endl;
     return 0;
 }
