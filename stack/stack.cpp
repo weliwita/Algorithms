@@ -25,6 +25,7 @@ void StackPush(Stack *s, int value)
         s->allocLen *= 2;
         s->elems =(int*) realloc(s->elems,
                             s->allocLen*sizeof(int));
+        assert(s->elems != NULL);
     }
     s->elems[s->logicalLen] = value;
     s->logicalLen++;
